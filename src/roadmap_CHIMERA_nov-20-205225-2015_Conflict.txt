@@ -1,0 +1,42 @@
+0.1.9
+-------------------------------------------------
+* Fixed config.yml being overwritten at server restart 
+
+0.1.8
+-------------------------------------------------
+* Added RequiredExam option to allow exams requiring passing another exam first
+* Fixed exams.yml being overwritten when it contains errors
+
+
+0.1.7
+-------------------------------------------------
+* Added "Command" option for Exams. This command will be executed when passing the exam. 
+
+0.1.6
+-------------------------------------------------
+* Fixed an issue with the permission node for placing exams
+* Better support for bPermissions
+* A few cosmetic changes
+
+0.1.5
+-------------------------------------------------
+* Remove global numberofquestions setting in config
+* Cleaned up messages
+* Added another exam example
+
+0.1.4
+-------------------------------------------------
+Fixed bug where layer could signup for one exam and use that for starting another
+
+
+0.1.3
+----------------
+* Fixed /exams help
+* Fixed exam opening times
+* Fixed support for bPermissions2
+* Fixed support for PEX
+* Fixed support for GroupManager
+* Fixed support for servers NOT running Vault
+
+
+Initial release

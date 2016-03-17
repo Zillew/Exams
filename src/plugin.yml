@@ -1,0 +1,39 @@
+name: Exams
+main: com.dogonfire.exams.Exams
+author: DogOnFire
+version: 0.2.3
+description: Exams in Minecraft!
+softdepend: [Vault]
+website: http://dev.bukkit.org/server-mods/exams
+commands:
+  exams:
+    description: Controls the exam system
+    usage: /exams
+permissions:
+    exams.*:
+        description: Gives access to all vauld commands
+        default: false
+        children:
+            exams.student: true
+            exams.place: false
+            exams.list: true
+            exams.info: true
+            exams.reload: false
+    exams.clean:
+        description: Allows the Player to clean up expired student data
+        default: false
+    exams.student:
+        description: Allows the Player to take exams
+        default: true
+    exams.place:
+        description: Allows the Player to place exams
+        default: true
+    exams.reload:
+        description: Allows the Player to reload configuration for the Exams system
+        default: false
+    exams.list:
+        description: Allows the Player to see the list of exams
+        default: true
+    eaxms.info:
+        description: Allows the Player to see details for an exam
+        default: true        
