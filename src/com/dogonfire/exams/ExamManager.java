@@ -106,10 +106,10 @@ public class ExamManager
 			questions.add("Are you allowed to insult people?");
 
 			this.examsConfig.set(testExam + ".RankName", "Citizen");
-			this.examsConfig.set(testExam + ".StartTime", Integer.valueOf(600));
-			this.examsConfig.set(testExam + ".EndTime", Integer.valueOf(13000));
-			this.examsConfig.set(testExam + ".Price", Integer.valueOf(100));
-			this.examsConfig.set(testExam + ".NumberOfQuestions", Integer.valueOf(3));
+			this.examsConfig.set(testExam + ".StartTime", 600);
+			this.examsConfig.set(testExam + ".EndTime", 13000);
+			this.examsConfig.set(testExam + ".Price", 100);
+			this.examsConfig.set(testExam + ".NumberOfQuestions", 3);
 			this.examsConfig.set(testExam + ".Questions", questions);
 
 			for (String question : questions)
@@ -137,10 +137,10 @@ public class ExamManager
 
 			this.examsConfig.set(testExam + ".RankName", "Wizard");
 			this.examsConfig.set(testExam + ".Command", "/give $PlayerName 38 1");
-			this.examsConfig.set(testExam + ".StartTime", Integer.valueOf(600));
-			this.examsConfig.set(testExam + ".EndTime", Integer.valueOf(13000));
-			this.examsConfig.set(testExam + ".Price", Integer.valueOf(100));
-			this.examsConfig.set(testExam + ".NumberOfQuestions", Integer.valueOf(3));
+			this.examsConfig.set(testExam + ".StartTime", 600);
+			this.examsConfig.set(testExam + ".EndTime", 13000);
+			this.examsConfig.set(testExam + ".Price", 100);
+			this.examsConfig.set(testExam + ".NumberOfQuestions", 3);
 			this.examsConfig.set(testExam + ".Questions", questions);
 
 			for (String question : questions)
@@ -324,8 +324,23 @@ public class ExamManager
 			
 			if(command!=null)
 			{
+				plugin.logDebug("Reading single command");
 				plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), command.replace("$PlayerName", playerName));
 			}
+			else
+			{			
+				plugin.logDebug("Reading multiple commands");
+
+				List<String> commands = getExamCommands(examName);
+			
+				if(commands!=null)
+				{
+					for(String c : commands)
+					{
+						plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), c.replace("$PlayerName", playerName)); 
+					}
+				}
+			}			
 			
 			plugin.getStudentManager().setPassedExam(playerName, examName);
 
@@ -397,6 +412,11 @@ public class ExamManager
 		return examsConfig.getString(examName + ".Command");
 	}
 
+	public List<String> getExamCommands(String examName)
+	{
+		return examsConfig.getStringList(examName + ".Commands");
+	}
+
 	public boolean nextExamQuestion(String playerName)
 	{
 		String examName = plugin.getStudentManager().getExamForStudent(playerName);
@@ -436,6 +456,12 @@ public class ExamManager
 		ConfigurationSection configSection = examsConfig.getConfigurationSection(examName + ".Questions");
 		Set<String> questions = configSection.getKeys(false);
 
+		if(examQuestionIndex >= questions.size())
+		{
+			plugin.log("ERROR: Could not find question text with index " + examQuestionIndex + ". There are only " + questions.size() + " questions!");
+			return null;
+		}
+		
 		return (String) questions.toArray()[examQuestionIndex];
 	}
 
@@ -443,6 +469,12 @@ public class ExamManager
 	{
 		ConfigurationSection configSection = examsConfig.getConfigurationSection(examName + ".Questions");
 		Set<String> questions = configSection.getKeys(false);
+
+		if(examQuestionIndex >= questions.size())
+		{
+			plugin.log("ERROR: Could not find question correct option with index " + examQuestionIndex + ". There are only " + questions.size() + " questions!");
+			return null;
+		}
 
 		String question = (String) questions.toArray()[examQuestionIndex];
 
@@ -454,8 +486,9 @@ public class ExamManager
 		ConfigurationSection configSection = examsConfig.getConfigurationSection(examName + ".Questions");
 		Set questions = configSection.getKeys(false);
 
-		if(examQuestionIndex>=questions.size())
+		if(examQuestionIndex >= questions.size())
 		{
+			plugin.log("ERROR: Could not find question option with index " + examQuestionIndex + ". There are only " + questions.size() + " questions!");
 			return null;
 		}
 		

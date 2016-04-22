@@ -1,7 +1,7 @@
 name: Exams
 main: com.dogonfire.exams.Exams
 author: DogOnFire
-version: 0.2.3
+version: 0.2.5
 description: Exams in Minecraft!
 softdepend: [Vault]
 website: http://dev.bukkit.org/server-mods/exams

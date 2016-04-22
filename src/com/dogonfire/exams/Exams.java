@@ -120,6 +120,7 @@ public class Exams extends JavaPlugin
 
 		getServer().getPluginManager().registerEvents(new BlockListener(this), this);
 
+		/*
 		try
 		{
 			Metrics metrics = new Metrics(this);
@@ -178,6 +179,7 @@ public class Exams extends JavaPlugin
 		{
 			log("Failed to submit metrics :-(");
 		}
+		*/
 	}
 
 	public void onDisable()
