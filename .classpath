@@ -8,6 +8,6 @@
 	<classpathentry kind="lib" path="C:/CloudStation/minecraft/plugins/WitchCraft/lib/PermissionsEx-1.23.1.jar"/>
 	<classpathentry kind="lib" path="C:/CloudStation/minecraft/plugins/WitchCraft/lib/zPermissions-1.2a.jar"/>
 	<classpathentry kind="lib" path="C:/CloudStation/minecraft/plugins/PiggyRacers/lib/Vault.jar"/>
-	<classpathentry kind="lib" path="C:/CloudStation/minecraft/plugins/Exams/lib/spigot-1.9-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/CloudStation/minecraft/plugins/Exams/bukkit/spigot-1.9-R0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
