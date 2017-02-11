@@ -94,7 +94,6 @@ public class BlockListener implements Listener
 			if (plugin.getExamManager().signupForExam(player.getName(), examName))
 			{
 				plugin.sendMessage(player.getName(), ChatColor.AQUA + "Click the sign again to start this exam!");
-				plugin.sendToAll(ChatColor.AQUA + player.getName() + " signed up for the " + ChatColor.YELLOW + examName + ChatColor.AQUA + " exam!");
 			}
 			else
 			{
