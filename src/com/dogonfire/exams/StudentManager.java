@@ -151,17 +151,6 @@ public class StudentManager
 
 		plugin.getStudentManager().setLastExamTime(playerName);
 	}
-
-	public void setOriginalRank(String playerName, String oldRank)
-	{
-		studentsConfig.set(playerName + ".OriginalRank", oldRank);
-		save();
-	}
-
-	public String getOriginalRank(String playerName)
-	{
-		return studentsConfig.getString(playerName + ".OriginalRank");
-	}
 	
 	public void setPassedExam(String playerName, String exam)
 	{
@@ -285,7 +274,6 @@ public class StudentManager
 		studentsConfig.set(studentName + ".ExamQuestionOptions", null);
 		studentsConfig.set(studentName + ".ExamCorrectOption", null);
 		studentsConfig.set(studentName + ".ExamCorrectAnswers", null);
-		studentsConfig.set(studentName + ".OriginalRank", null);
 
 		plugin.logDebug(studentName + " was removed as student");
 

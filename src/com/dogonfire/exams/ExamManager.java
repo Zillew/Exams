@@ -105,7 +105,6 @@ public class ExamManager
 			questions.add("Is this a RPG server?");
 			questions.add("Are you allowed to insult people?");
 
-			this.examsConfig.set(testExam + ".RankName", "Citizen");
 			this.examsConfig.set(testExam + ".StartTime", 600);
 			this.examsConfig.set(testExam + ".EndTime", 13000);
 			this.examsConfig.set(testExam + ".Price", 100);
@@ -135,7 +134,6 @@ public class ExamManager
 			questions.add("In which world are wizards enabled?");
 			questions.add("How do you slay a dragon?");
 
-			this.examsConfig.set(testExam + ".RankName", "Wizard");
 			this.examsConfig.set(testExam + ".Command", "/give $PlayerName 38 1");
 			this.examsConfig.set(testExam + ".StartTime", 600);
 			this.examsConfig.set(testExam + ".EndTime", 13000);
@@ -306,6 +304,8 @@ public class ExamManager
 
 		plugin.getStudentManager().setLastExamTime(playerName);
 
+		if (score >= plugin.requiredExamScore)
+		{
 			String command = getExamCommand(examName);
 			
 			if(command!=null)
@@ -337,10 +337,9 @@ public class ExamManager
 		{
 			plugin.sendMessage(playerName, ChatColor.RED + "Sorry, you did not pass the exam...");
 			plugin.log(playerName + " failed the " + examName + " exam with " + score + " points");
-
+		}
 		}
 	}
-
 	public double getExamPrice(String examName)
 	{
 		return examsConfig.getDouble(examName + ".Price");
@@ -382,11 +381,6 @@ public class ExamManager
 			}
 		}
 		return n;
-	}
-
-	public String getExamRank(String examName)
-	{
-		return examsConfig.getString(examName + ".RankName");
 	}
 
 	public String getExamCommand(String examName)
@@ -627,12 +621,6 @@ public class ExamManager
 			plugin.sendMessage(playerName, ChatColor.RED + "Try again in " + ChatColor.YELLOW + plugin.getStudentManager().getTimeUntilCanDoExam(plugin.getServer().getPlayer(playerName).getWorld(), playerName) + ChatColor.RED + " minutes");
 			return false;
 		}
-
-		String oldRank = plugin.getPermissionsManager().getGroup(playerName);
-
-		plugin.getStudentManager().setOriginalRank(playerName, oldRank);
-
-		plugin.getPermissionsManager().setGroup(playerName, "student");
 
 		plugin.getStudentManager().signupForExam(playerName, examName);
 

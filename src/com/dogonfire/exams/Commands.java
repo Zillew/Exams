@@ -173,7 +173,6 @@ public class Commands
 		else
 		{
 			plugin.getExamManager().calculateExamResult(player.getName());
-			plugin.getStudentManager().removeStudent(player.getName());
 		}
 	}
 
