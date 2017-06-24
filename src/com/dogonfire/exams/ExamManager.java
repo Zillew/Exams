@@ -305,20 +305,6 @@ public class ExamManager
 		Player player = plugin.getServer().getPlayer(playerName);
 
 		plugin.getStudentManager().setLastExamTime(playerName);
-		
-		if (score >= plugin.requiredExamScore)
-		{
-			String newGroup = getExamRank(examName);
-			
-			if(newGroup!=null)
-			{
-				plugin.getPermissionsManager().setGroup(playerName, newGroup);
-			}
-			else
-			{
-				String oldGroup = plugin.getStudentManager().getOriginalRank(playerName);
-				plugin.getPermissionsManager().setGroup(playerName, oldGroup);				
-			}
 
 			String command = getExamCommand(examName);
 			
@@ -345,17 +331,12 @@ public class ExamManager
 			plugin.getStudentManager().setPassedExam(playerName, examName);
 
 			plugin.sendMessage(playerName, ChatColor.GREEN + "Congratulations, you passed the exam!");
-			plugin.sendToAll(ChatColor.GREEN + playerName + " just PASSED the " + ChatColor.YELLOW + plugin.getStudentManager().getExamForStudent(playerName) + ChatColor.GREEN + " exam!");
 		}
 		else
 		{
-			String oldGroup = plugin.getStudentManager().getOriginalRank(playerName);
-
 			plugin.sendMessage(playerName, ChatColor.RED + "Sorry, you did not pass the exam...");
-			plugin.sendToAll(ChatColor.RED + playerName + " just FAILED the " + ChatColor.YELLOW + plugin.getStudentManager().getExamForStudent(playerName) + ChatColor.RED + " exam...");
 			plugin.log(playerName + " failed the " + examName + " exam with " + score + " points");
 
-			plugin.getPermissionsManager().setGroup(playerName, oldGroup);
 		}
 	}
 
