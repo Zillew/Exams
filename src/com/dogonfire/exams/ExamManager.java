@@ -327,7 +327,8 @@ public class ExamManager
 					}
 				}
 			}			
-			
+			if (score >= plugin.requiredExamScore)
+			{
 			plugin.getStudentManager().setPassedExam(playerName, examName);
 
 			plugin.sendMessage(playerName, ChatColor.GREEN + "Congratulations, you passed the exam!");
