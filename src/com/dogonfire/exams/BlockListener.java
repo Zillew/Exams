@@ -94,7 +94,6 @@ public class BlockListener implements Listener
 			if (plugin.getExamManager().signupForExam(player.getName(), examName))
 			{
 				plugin.sendMessage(player.getName(), ChatColor.AQUA + "Click the sign again to start this exam!");
-				plugin.sendToAll(ChatColor.AQUA + player.getName() + " signed up for the " + ChatColor.YELLOW + examName + ChatColor.AQUA + " exam!");
 			}
 			else
 			{
@@ -120,7 +119,6 @@ public class BlockListener implements Listener
 					return;
 				}
 
-				plugin.sendToAll(ChatColor.AQUA + player.getName() + " started on the exam for " + ChatColor.YELLOW + examName + ChatColor.AQUA + "!");
 				plugin.sendMessage(player.getName(), "You started on the " + ChatColor.YELLOW + examName + ChatColor.AQUA + " exam.");
 				plugin.sendMessage(player.getName(), "Click on the sign again to repeat the exam question.");
 				plugin.sendMessage(player.getName(), "Good luck!");

@@ -325,19 +325,17 @@ public class ExamManager
 					{
 						plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), c.replace("$PlayerName", playerName)); 
 					}
+			   
 				}
-			}			
-			if (score >= plugin.requiredExamScore)
-			{
-			plugin.getStudentManager().setPassedExam(playerName, examName);
+			}
 
+			plugin.getStudentManager().setPassedExam(playerName, examName);
 			plugin.sendMessage(playerName, ChatColor.GREEN + "Congratulations, you passed the exam!");
 		}
 		else
 		{
 			plugin.sendMessage(playerName, ChatColor.RED + "Sorry, you did not pass the exam...");
 			plugin.log(playerName + " failed the " + examName + " exam with " + score + " points");
-		}
 		}
 	}
 	public double getExamPrice(String examName)

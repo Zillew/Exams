@@ -173,7 +173,7 @@ public class StudentManager
 		studentsConfig.set(playerName + ".Exam", examName);
 		studentsConfig.set(playerName + ".ExamCorrectAnswers", 0);
 		studentsConfig.set(playerName + ".ExamProgressIndex", -1);
-
+		
 		save();
 
 		return true;
